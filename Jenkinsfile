@@ -12,7 +12,7 @@ pipeline {
     }
 
     environment {
-        def branchname = ${params.branchname.replaceAll(/master/,latest)}
+        branchname = ${params.branchname}
     }
     
 
