@@ -11,9 +11,9 @@ pipeline {
             )
     }
 
-    environment {
-        branchname = params.branchname
-    }
+    // environment {
+    //     branchname = params.branchname
+    // }
     
 
     stages {
@@ -24,7 +24,7 @@ pipeline {
         }
         stage('Build') {
             steps {
-                echo "Deploying ${branchname}"
+                echo "Deploying ${params.branchname}"
                 // imageBuild()
             }
         }
