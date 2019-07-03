@@ -12,7 +12,8 @@ pipeline {
     }
 
     environment {
-        branchname = "${params.branchname}"
+        // branchname = "${params.branchname}"
+        branchname = "master"
     }
     
 
