@@ -11,8 +11,11 @@ pipeline {
             )
     }
 
-    def branchname = ${params.branchname}.replaceAll(/'master'/,'latest')
+    environment {
+        def branchname = ${params.branchname}.replaceAll(/'master'/,'latest')
+    }
     
+
     stages {
         stage('Maven') {
             steps {
