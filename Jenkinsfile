@@ -4,7 +4,7 @@ pipeline {
     agent any
 
     environment {
-        def bracnname = "${bracnname}"
+        def bracnname = "${params.bracnname}"
     }
 
     stages {
@@ -15,7 +15,7 @@ pipeline {
         }
         stage('Build') {
             steps {
-                echo 'Deploying....'
+                echo 'Deploying ${bracnname}'
                 imageBuild()
             }
         }
