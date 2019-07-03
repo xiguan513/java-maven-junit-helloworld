@@ -11,7 +11,8 @@ pipeline {
             )
     }
 
-
+    def branchname = ${params.branchname}.replaceAll(/'master'/,'latest')
+    
     stages {
         stage('Maven') {
             steps {
@@ -20,7 +21,6 @@ pipeline {
         }
         stage('Build') {
             steps {
-                def branchname = ${params.branchname}.replaceAll(/'master'/,'latest')
                 echo "Deploying ${branchname}"
                 imageBuild()
             }
