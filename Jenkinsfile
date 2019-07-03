@@ -3,9 +3,12 @@
 pipeline {
     agent any
 
-
-    properties([parameters([string(defaultValue: '', description: '', name: 'branchname', trim: false)])])
-
+    parameters {
+        string(
+            description: "描述信息",
+            name: 'branchname',
+            )
+    }
 
     stages {
         stage('Maven') {
