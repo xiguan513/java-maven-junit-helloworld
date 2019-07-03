@@ -7,6 +7,7 @@ pipeline {
         string(
             description: "描述信息",
             name: 'branchname',
+            defaultValue: 'master', 
             )
     }
 
@@ -18,7 +19,7 @@ pipeline {
         }
         stage('Build') {
             steps {
-                echo 'Deploying ${params.bracnname}'
+                echo 'Deploying ${params.branchname}'
                 imageBuild()
             }
         }
@@ -27,6 +28,6 @@ pipeline {
 
 def imageBuild() {
 
-    def DOCKER_IMAGE = docker.build("harbor.ynsy.com/test/java:${params.bracnname}", "-f dockerfile .")
+    def DOCKER_IMAGE = docker.build("harbor.ynsy.com/test/java:${params.branchname}", "-f dockerfile .")
     DOCKER_IMAGE.push()
 }
