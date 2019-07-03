@@ -20,7 +20,8 @@ pipeline {
         }
         stage('Build') {
             steps {
-                echo "Deploying ${params.branchname}.replaceAll("master","latest")"
+                def branchname = ${params.branchname}.replaceAll(/'master'/,'latest')
+                echo "Deploying ${branchname}"
                 imageBuild()
             }
         }
@@ -29,6 +30,6 @@ pipeline {
 
 def imageBuild() {
 
-    def DOCKER_IMAGE = docker.build("harbor.ynsy.com/test/java:${params.branchname}.replaceAll("master","latest")", "-f dockerfile .")
+    def DOCKER_IMAGE = docker.build("harbor.ynsy.com/test/java:${branchname}", "-f dockerfile .")
     DOCKER_IMAGE.push()
 }
