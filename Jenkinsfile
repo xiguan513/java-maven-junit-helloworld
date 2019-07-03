@@ -12,13 +12,13 @@ pipeline {
         stage('Build') {
             steps {
                 echo 'Deploying....'
-                mvnFileRead()
+                imageBuild()
             }
         }
     }
 }
 
-def mvnFileRead() {
+def imageBuild() {
 
     def DOCKER_IMAGE = docker.build("harbor.ynsy.com/test/java:latest", "-f dockerfile .")
     DOCKER_IMAGE.push()
