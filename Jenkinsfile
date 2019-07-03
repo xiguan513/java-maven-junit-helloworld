@@ -20,6 +20,6 @@ pipeline {
 
 def imageBuild() {
 
-    def DOCKER_IMAGE = docker.build("harbor.ynsy.com/test/java:latest", "-f dockerfile .")
+    def DOCKER_IMAGE = docker.build("harbor.ynsy.com/test/java:${bracnname}", "-f dockerfile .")
     DOCKER_IMAGE.push()
 }
