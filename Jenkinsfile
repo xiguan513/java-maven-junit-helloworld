@@ -13,20 +13,21 @@ pipeline {
 
     environment {
         branchname = "${params.branchname}"
+        branchname = ${branchname.replaceAll(/master/,'latest')}
     }
     
 
     stages {
         stage('Maven') {
             steps {
-                echo "${branchname.replaceAll(/master/,'latest')}"
-                // sh "mvn clean install -Dmaven.test.skip=true"
+                echo "maven branch : ${branchname}"
+                sh "mvn clean install -Dmaven.test.skip=true"
             }
         }
         stage('Build') {
             steps {
-                echo "Deploying ${branchname}"
-                // imageBuild()
+                echo "building ${branchname}"
+                imageBuild()
             }
         }
     }
