@@ -3,9 +3,9 @@
 pipeline {
     agent any
 
-    environment {
-        def bracnname = "${params.bracnname}"
-    }
+
+    properties([parameters([string(defaultValue: '', description: '', name: 'branchname', trim: false)])])
+
 
     stages {
         stage('Maven') {
@@ -15,7 +15,7 @@ pipeline {
         }
         stage('Build') {
             steps {
-                echo 'Deploying ${bracnname}'
+                echo 'Deploying ${params.bracnname}'
                 imageBuild()
             }
         }
@@ -24,6 +24,6 @@ pipeline {
 
 def imageBuild() {
 
-    def DOCKER_IMAGE = docker.build("harbor.ynsy.com/test/java:${bracnname}", "-f dockerfile .")
+    def DOCKER_IMAGE = docker.build("harbor.ynsy.com/test/java:${params.bracnname}", "-f dockerfile .")
     DOCKER_IMAGE.push()
 }
