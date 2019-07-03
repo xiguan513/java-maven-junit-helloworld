@@ -12,8 +12,7 @@ pipeline {
     }
 
     environment {
-        // branchname = "${params.branchname}"
-        branchname = "master"
+        branchname = "${params.branchname}"
     }
     
 
@@ -21,6 +20,7 @@ pipeline {
         stage('Maven') {
             steps {
                 echo "${branchname.replaceAll(/'master'/,'latest')}"
+                echo "${branchname.substring(0,3)}"
                 // sh "mvn clean install -Dmaven.test.skip=true"
             }
         }
