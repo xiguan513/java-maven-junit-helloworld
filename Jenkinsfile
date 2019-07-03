@@ -4,7 +4,7 @@ pipeline {
     agent any
 
     environment {
-        def bracnname = "${env.BRANCH_NAME}"
+        def bracnname = "${bracnname}"
     }
 
     stages {
