@@ -12,8 +12,10 @@ pipeline {
     }
 
     environment {
-        temp = "${params.branchname}"
-        branchname = "${temp.replaceAll(/master/,'latest').replaceAll(/\//,'')}"
+        project = "test"
+        imageNmae = "java"
+        branchname = "${params.branchname}"
+        tag = "${branchname.replaceAll(/master/,'latest').replaceAll(/\//,'')}"
     }
     
 
@@ -35,6 +37,6 @@ pipeline {
 
 def imageBuild() {
 
-    def DOCKER_IMAGE = docker.build("harbor.ynsy.com/test/java:${branchname}", "-f dockerfile .")
+    def DOCKER_IMAGE = docker.build("harbor.ynsy.com/${project}/${imageNmae}:${tag}", "-f dockerfile .")
     DOCKER_IMAGE.push()
 }
