@@ -4,6 +4,10 @@ pipeline {
     agent any
 
     stages {
+        stage('Git') {
+            branchname=branchname
+            git branch: $branchname, url: 'https://github.com/xiguan513/java-maven-junit-helloworld.git'
+        }
         stage('Maven') {
             steps {
                 sh "mvn clean install -Dmaven.test.skip=true"
