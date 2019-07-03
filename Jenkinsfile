@@ -11,20 +11,20 @@ pipeline {
             )
     }
 
-    // environment {
-    //     branchname = params.branchname
-    // }
+    environment {
+        branchname = "${params.branchname}"
+    }
     
 
     stages {
         stage('Maven') {
             steps {
-                sh "mvn clean install -Dmaven.test.skip=true"
+                //sh "mvn clean install -Dmaven.test.skip=true"
             }
         }
         stage('Build') {
             steps {
-                echo "Deploying ${params.branchname}"
+                echo "Deploying ${branchname}"
                 // imageBuild()
             }
         }
