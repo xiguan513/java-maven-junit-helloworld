@@ -19,8 +19,7 @@ pipeline {
     stages {
         stage('Maven') {
             steps {
-                echo "${branchname.replaceAll(/'master'/,'latest')}"
-                echo "${branchname.substring(0,3)}"
+                echo "${branchname.replaceAll(/master/,'latest')}"
                 // sh "mvn clean install -Dmaven.test.skip=true"
             }
         }
