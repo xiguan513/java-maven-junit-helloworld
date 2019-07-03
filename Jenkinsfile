@@ -12,8 +12,8 @@ pipeline {
     }
 
     environment {
-        branchname = "${params.branchname}"
-        branchname = "${branchname.replaceAll(/master/,'latest')}"
+        temp = "${params.branchname}"
+        branchname = "${temp.replaceAll(/master/,'latest')}"
     }
     
 
