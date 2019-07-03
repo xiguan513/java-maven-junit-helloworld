@@ -11,6 +11,7 @@ pipeline {
             )
     }
 
+
     stages {
         stage('Maven') {
             steps {
@@ -19,7 +20,7 @@ pipeline {
         }
         stage('Build') {
             steps {
-                echo 'Deploying ${params.branchname}'
+                echo "Deploying ${params.branchname}.replaceAll("master","latest")"
                 imageBuild()
             }
         }
@@ -28,6 +29,6 @@ pipeline {
 
 def imageBuild() {
 
-    def DOCKER_IMAGE = docker.build("harbor.ynsy.com/test/java:${params.branchname}", "-f dockerfile .")
+    def DOCKER_IMAGE = docker.build("harbor.ynsy.com/test/java:${params.branchname}.replaceAll("master","latest")", "-f dockerfile .")
     DOCKER_IMAGE.push()
 }
