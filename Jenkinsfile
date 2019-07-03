@@ -13,7 +13,7 @@ pipeline {
 
     environment {
         project = "test"
-        imageNmae = env.JOB_NAME
+        imageNmae = "${env.JOB_NAME}"
         branchname = "${params.branchname}"
         tag = "${branchname.replaceAll(/master/,'latest').replaceAll(/\//,'')}"
     }
