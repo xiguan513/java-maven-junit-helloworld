@@ -3,6 +3,10 @@
 pipeline {
     agent any
 
+    environment {
+        def bracnname = env.BRANCH_NAME
+    }
+
     stages {
         stage('Maven') {
             steps {
