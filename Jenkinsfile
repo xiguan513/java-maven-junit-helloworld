@@ -32,6 +32,12 @@ pipeline {
                 imageBuild()
             }
         }
+        stage('yaml') {
+            steps {
+                echo "Generate the Kubernetes file"
+                sh "/bin/bash /opt/sh/1.sh"
+            }
+        }
     }
 }
 
