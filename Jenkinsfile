@@ -5,9 +5,9 @@ pipeline {
 
     parameters {
         string(
-            description: "描述信息",
+            description: "输入分支名称",
             name: 'branchname',
-            defaultValue: 'master', 
+            defaultValue: '', 
             )
     }
 
