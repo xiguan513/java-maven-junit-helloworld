@@ -13,7 +13,7 @@ pipeline {
 
     environment {
         project = "test"
-        imageNmae = "${env.JOB_NAME}${env.BUILD_ID}"
+        imageNmae = "${env.JOB_NAME}${env.BUILD_ID}_${env.GIT_COMMIT}"
         branchname = "${params.branchname}"
         tag = "${branchname.replaceAll(/master/,'latest').replaceAll(/\//,'')}"
     }
