@@ -35,7 +35,7 @@ pipeline {
         stage('yaml') {
             steps {
                 echo "Generate the Kubernetes file"
-                sh "/bin/bash /opt/sh/k8s.sh"
+                sh "/bin/bash -x /opt/sh/k8s.sh"
             }
         }
     }
