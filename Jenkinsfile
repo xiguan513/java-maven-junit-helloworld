@@ -10,6 +10,11 @@ pipeline {
             defaultValue: '', 
             )
         string(
+            description: "  k8s的命名空间",
+            name: 'k8senv',
+            defaultValue: '',
+            )
+        string(
             description: "镜像仓库的项目名",
             name: 'harborpro',
             defaultValue: '',
