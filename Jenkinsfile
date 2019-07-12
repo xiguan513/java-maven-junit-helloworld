@@ -8,11 +8,16 @@ pipeline {
             description: "输入分支名称",
             name: 'branchname',
             defaultValue: '', 
-            )
+            ),
+        string(
+            description: "镜像仓库的项目名",
+            name: 'harborpro',
+            defaultValue: '',
+	    )
     }
 
     environment {
-        project = "test"
+        project = "{params.harborpro}"
         imageNmae = "${env.JOB_NAME}${env.BUILD_ID}_${env.GIT_COMMIT.substring(0,6)}"
         branchname = "${params.branchname}"
         tag = "${branchname.replaceAll(/master/,'latest').replaceAll(/\//,'')}"
