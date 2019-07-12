@@ -29,12 +29,12 @@ pipeline {
         stage('Maven') {
             steps {
                 echo "maven branch : ${branchname}"
-                sh "mvn clean install -Dmaven.test.skip=true"
+                sh "mvn clean install"
             }
         }
         stage('Build') {
             steps {
-                echo "building ${branchname}"
+                echo "building ${tag} ${project}"
                 imageBuild()
             }
         }
