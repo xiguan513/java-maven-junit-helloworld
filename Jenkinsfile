@@ -8,7 +8,8 @@ pipeline {
             description: "输入分支名称",
             name: 'branchname',
             defaultValue: '', 
-
+            )
+        string(
             description: "镜像仓库的项目名",
             name: 'harborpro',
             defaultValue: '',
