@@ -10,11 +10,6 @@ pipeline {
             defaultValue: '', 
             )
         string(
-            description: "  k8s的命名空间",
-            name: 'k8senv',
-            defaultValue: '',
-            )
-        string(
             description: "镜像仓库的项目名",
             name: 'harborpro',
             defaultValue: '',
@@ -46,7 +41,7 @@ pipeline {
         stage('yaml') {
             steps {
                 echo "Generate the Kubernetes file"
-                sh "curl http://192.168.1.76:8000/depovs/update/${env.JOB_NAME}/"harbor.ynsy.com/${project}/${imageNmae}:${tag}"/"
+                sh "curl http://192.168.1.76:8000/depovs/update/${env.JOB_NAME}/harbor.ynsy.com\/${project}\/${imageNmae}:${tag}\"
             }
         }
     }
