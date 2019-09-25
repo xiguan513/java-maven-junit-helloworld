@@ -46,7 +46,7 @@ pipeline {
         stage('yaml') {
             steps {
                 echo "Generate the Kubernetes file"
-                sh "/bin/bash -x /opt/sh/k8s.sh"
+                sh "curl http://192.168.1.76:8000/depovs/update/${env.JOB_NAME}/"harbor.ynsy.com/${project}/${imageNmae}:${tag}"/"
             }
         }
     }
