@@ -24,7 +24,6 @@ pipeline {
 
     environment {
         project = "${params.harborpro}"
-        envname = "${params.k8senv}"
         imageNmae = "${env.JOB_NAME}${env.BUILD_ID}_${env.GIT_COMMIT.substring(0,6)}"
         branchname = "${params.branchname}"
         tag = "${branchname.replaceAll(/master/,'latest').replaceAll(/\//,'')}"
