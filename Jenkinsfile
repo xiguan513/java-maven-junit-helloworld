@@ -14,11 +14,17 @@ pipeline {
             name: 'harborpro',
             defaultValue: '',
             )
+        string(
+           description: "运行环境",
+           name: 'envname',
+           defaultValue: '',
+	)
 
     }
 
     environment {
         project = "${params.harborpro}"
+        envname = "${params.envname}"
         imageNmae = "${env.JOB_NAME}${env.BUILD_ID}_${env.GIT_COMMIT.substring(0,6)}"
         branchname = "${params.branchname}"
         tag = "${branchname.replaceAll(/master/,'latest').replaceAll(/\//,'')}"
