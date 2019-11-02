@@ -19,13 +19,18 @@ pipeline {
             name: 'harborpro',
             defaultValue: '',
             )
-
+	string(
+	    description: "uuid",
+            name: 'uuid',
+            defaultValue: '',
+	)
     }
 
     environment {
         project = "${params.harborpro}"
         imageNmae = "${env.JOB_NAME}${env.BUILD_ID}_${env.GIT_COMMIT.substring(0,6)}"
         branchname = "${params.branchname}"
+        uuid = "${params.uuid}"
         tag = "${branchname.replaceAll(/master/,'latest').replaceAll(/\//,'')}"
     }
     
