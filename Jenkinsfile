@@ -20,7 +20,7 @@ pipeline {
             defaultValue: '',
             )
 	string(
-	    description: "uuid",
+	    description: "uuid地址",
             name: 'uuid',
             defaultValue: '',
 	)
