@@ -19,11 +19,6 @@ pipeline {
             name: 'harborpro',
             defaultValue: '',
             )
-	string(
-	    description: "uuid地址",
-            name: 'uuid',
-            defaultValue: '',
-	)
     }
 
     environment {
