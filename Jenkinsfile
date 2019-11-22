@@ -63,9 +63,9 @@ pipeline {
                 }   
             }
         }
-    
     }
-
+    
+}
 def imageBuild() {
 
     def DOCKER_IMAGE = docker.build("harbor.ynsy.com/${project}/${imageNmae}:${tag}", "-f dockerfile .")
