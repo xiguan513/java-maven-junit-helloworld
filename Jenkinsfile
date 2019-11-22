@@ -2,34 +2,34 @@
 
 pipeline {
     agent any
-
-    parameters {
-        string(
-            description: "输入分支名称",
-            name: 'branchname',
-            defaultValue: '', 
-            )
-        string(
-            description: "k8s的命名空间",
-            name: 'k8senv',
-            defaultValue: '',
-            )
-        string(
-            description: "镜像仓库的项目名",
-            name: 'harborpro',
-            defaultValue: '',
-            )
-    }
-
-    environment {
-        project = "${params.harborpro}"
-        imageNmae = "${env.JOB_NAME}${env.BUILD_ID}_${env.GIT_COMMIT.substring(0,6)}"
-        branchname = "${params.branchname}"
-        uuid = "${params.uuid}"
-        tag = "${branchname.replaceAll(/master/,'latest').replaceAll(/\//,'')}"
-    }
-    
     try {
+        parameters {
+            string(
+                description: "输入分支名称",
+                name: 'branchname',
+                defaultValue: '', 
+                )
+            string(
+                description: "k8s的命名空间",
+                name: 'k8senv',
+                defaultValue: '',
+                )
+            string(
+                description: "镜像仓库的项目名",
+                name: 'harborpro',
+                defaultValue: '',
+                )
+        }
+
+        environment {
+            project = "${params.harborpro}"
+            imageNmae = "${env.JOB_NAME}${env.BUILD_ID}_${env.GIT_COMMIT.substring(0,6)}"
+            branchname = "${params.branchname}"
+            uuid = "${params.uuid}"
+            tag = "${branchname.replaceAll(/master/,'latest').replaceAll(/\//,'')}"
+        }
+    
+    
         stages {
             stage('Maven') {
                 steps {
