@@ -29,27 +29,41 @@ pipeline {
         tag = "${branchname.replaceAll(/master/,'latest').replaceAll(/\//,'')}"
     }
     
-
-    stages {
-        stage('Maven') {
-            steps {
-                echo "maven branch : ${branchname}"
-                sh "mvn clean install"
+    try {
+        stages {
+            stage('Maven') {
+                steps {
+                    echo "maven branch : ${branchname}"
+                    sh "mvn clean install"
+                }
             }
-        }
-        stage('Build') {
-            steps {
-                echo "building ${tag} ${project}"
-                imageBuild()
+            stage('Build') {
+                steps {
+                    echo "building ${tag} ${project}"
+                    imageBuild()
+                }
             }
-        }
-        stage('yaml') {
-            steps {
-                echo "Generate the Kubernetes file"
-		sh "/bin/bash -x /opt/sh/test.sh"
+            stage('yaml') {
+                steps {
+                    echo "Generate the Kubernetes file"
+                    sh "/bin/bash -x /opt/sh/test.sh"
+                }
             }
         }
     }
+    catch(all) {
+        currentBuild.result = 'FAILURE'
+    }
+    if(currentBuild.result != 'FAILURE') {
+        stages{
+            stage("Post Build") {
+                steps {
+                    echo "FAILURE"
+                }   
+            }   
+        }
+    }
+    
 }
 
 def imageBuild() {
