@@ -28,44 +28,30 @@ pipeline {
         uuid = "${params.uuid}"
         tag = "${branchname.replaceAll(/master/,'latest').replaceAll(/\//,'')}"
     }
+    
 
     stages {
-        try {
-            stage('Maven') {
-                steps {
-                    echo "maven branch : ${branchname}"
-                    sh "mvn clean install"
-                }
-            }
-            stage('Build') {
-                steps {
-                    echo "building ${tag} ${project}"
-                    imageBuild()
-                }
-            }
-            stage('yaml') {
-                steps {
-                    echo "Generate the Kubernetes file"
-                    sh "/bin/bash -x /opt/sh/test.sh"
-                }
+        stage('Maven') {
+            steps {
+                echo "maven branch : ${branchname}"
+                sh "mvn clean install"
             }
         }
-    
-        catch(all) {
-            currentBuild.result = 'FAILURE'
+        stage('Build') {
+            steps {
+                echo "building ${tag} ${project}"
+                imageBuild()
+            }
         }
-        if(currentBuild.result != 'FAILURE') {
-            stages{
-                stage("Post Build") {
-                    steps {
-                        echo "FAILURE"
-                    }   
-                }   
+        stage('yaml') {
+            steps {
+                echo "Generate the Kubernetes file"
+        sh "/bin/bash -x /opt/sh/test.sh"
             }
         }
     }
-    
 }
+
 def imageBuild() {
 
     def DOCKER_IMAGE = docker.build("harbor.ynsy.com/${project}/${imageNmae}:${tag}", "-f dockerfile .")
