@@ -10,7 +10,10 @@
 # IntelliJ generated files.
 *.iml
 .idea
-
+pom.xml.versionsBackup
+release.properties
+pom.xml.releaseBackup
+1.sh
 # Autogenerared OS X clutter.
 .DS_Store
 ._.DS_Store
