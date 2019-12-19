@@ -13,15 +13,15 @@ if [ $1 == "major"  ];then
        git add .
        git commit -m "[maven-release-plugin] prepare patch version: ${developVersion}.0.0-SNAPSHOT"
        git push origin HEAD
-       git checkout -b release/${developVersion}.0.0 ${developVersion}.0.0
-       git push origin HEAD
+       #git checkout -b release/${developVersion}.0.0 ${developVersion}.0.0
+       #git push origin HEAD
        #mvn release:perform
-       git checkout master
-       git checkout -b fix/${developVersion}.0 ${developVersion}.0.0
-       mvn versions:set -DnewVersion="${developVersion}.0.1-SNAPSHOT"
-       git add .
-       git commit -m "[maven-release-plugin] prepare patch version: ${developVersion}.0.1-SNAPSHOT"
-       git push origin HEAD       
+       #git checkout master
+       #git checkout -b fix/${developVersion}.0 ${developVersion}.0.0
+       #mvn versions:set -DnewVersion="${developVersion}.0.1-SNAPSHOT"
+       #git add .
+       #git commit -m "[maven-release-plugin] prepare patch version: ${developVersion}.0.1-SNAPSHOT"
+       #git push origin HEAD       
        #mvn release:perform
 elif [ $1 == "minor"  ];then
         version=`awk '/<version>[^<]+<\/version>/{gsub(/<version>|<\/version>/,"",$1);print $1;exit;}' pom.xml`
