@@ -9,10 +9,10 @@ if [ $1 == "major"  ];then
        version=`awk '/<version>[^<]+<\/version>/{gsub(/<version>|<\/version>/,"",$1);print $1;exit;}' pom.xml`
        developVersion=$(echo $version | awk -F"." '{print $1}')
        developVersion=$(expr $developVersion + 1)
-       mvn release:clean release:prepare -B -DdevelopmentVersion=${developVersion}.0.0-SNAPSHOT -DreleaseVersion=${developVersion}.0.0 -Dtag=${developVersion}.0.0
        git add .
        git commit -m "[maven-release-plugin] prepare patch version: ${developVersion}.0.0-SNAPSHOT"
-       git push origin HEAD
+       mvn release:clean release:prepare -B -DdevelopmentVersion=${developVersion}.0.0-SNAPSHOT -DreleaseVersion=${developVersion}.0.0 -Dtag=${developVersion}.0.0
+       #git push origin HEAD
        #git checkout -b release/${developVersion}.0.0 ${developVersion}.0.0
        #git push origin HEAD
        #mvn release:perform
